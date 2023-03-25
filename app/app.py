@@ -5,6 +5,17 @@ from colorama import Fore
 class App:
     def __init__(self) -> None:
         self._create_walking_list_file_if_not_exists()
+        self.OPTIONS = [
+            (1, self.view_walks),
+            (2, self.create_walk),
+            (3, self.mean_walking_time),
+            (4, self.walking_time_std),
+            (5, self.total_mileage),
+            (6, self.mean_monthly_mileage),
+            (7, self.mean_monthly_mileage_plot),
+            (8, self.walking_time_plot),
+            (9, self.exit)
+        ]
 
     def _create_walking_list_file_if_not_exists(self) -> None:
         if not app.dao.walking_list_file_exist():
