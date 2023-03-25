@@ -2,9 +2,9 @@ from colorama import Fore
 
 
 def welcome() -> None:
-    message = ('**********************************\n'
-               f'|      {Fore.YELLOW}Bem vindo ao program{Fore.RESET}      |\n'
-               '**********************************\n')
+    message = ('********************************\n'
+               f'|     {Fore.YELLOW}Bem vindo ao programa{Fore.RESET}     |\n'
+               '********************************\n')
 
     print(message)
 
