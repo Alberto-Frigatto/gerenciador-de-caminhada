@@ -1,4 +1,4 @@
-from enum import Enum
+from enum import StrEnum
 
 
 WALKING_LIST_DIRECTORY = 'data'
@@ -6,7 +6,7 @@ WALKING_LIST_FILE_NAME = 'walking_list.csv'
 CSV_SEPARATOR = ';'
 
 
-class WalkingListColumns(Enum):
+class WalkingListColumns(StrEnum):
     DATE = 'Data'
-    DISTANCE = 'Distãncia'
+    DISTANCE = 'Distância'
     DURATION = 'Duração'
