@@ -13,3 +13,9 @@ def end() -> None:
     message = f'{Fore.YELLOW}Fim do programa{Fore.RESET}'
 
     print(message)
+
+
+def invalid_option() -> None:
+    message = f'{Fore.RED}Opção inválida{Fore.RESET}\n'
+
+    print(message)
