@@ -33,3 +33,6 @@ class App:
 
     def walking_time_plot(self):
         pass
+
+    def exit(self):
+        pass
