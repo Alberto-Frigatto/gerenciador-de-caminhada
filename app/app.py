@@ -27,7 +27,7 @@ class App:
         os.system('cls')
         app.messages.welcome()
 
-    def options_menu(self) -> int:
+    def options_menu(self) -> None:
         menu = (
             f'{Fore.YELLOW}1{Fore.RESET} - Visualizar caminhadas\n'
             f'{Fore.YELLOW}2{Fore.RESET} - Cadastrar caminhada\n'
@@ -41,8 +41,6 @@ class App:
         )
         print(menu)
 
-        return self.get_valid_user_option()
-
     def get_valid_user_option(self) -> int:
         while True:
             try:
@@ -54,6 +52,7 @@ class App:
             except ValueError:
                 os.system('cls')
                 app.messages.invalid_option()
+                self.options_menu()
 
             else:
                 return user_input
