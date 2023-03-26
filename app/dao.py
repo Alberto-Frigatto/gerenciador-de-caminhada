@@ -24,6 +24,6 @@ def create_walking_list_file() -> None:
     ) as walking_list_file:
         columns = (f'{WalkingListColumns.DATE}{CSV_SEPARATOR}'
                    f'{WalkingListColumns.DISTANCE}{CSV_SEPARATOR}'
-                   f'{WalkingListColumns.DURATION}{CSV_SEPARATOR}\n')
+                   f'{WalkingListColumns.DURATION}\n')
 
         walking_list_file.write(columns)
