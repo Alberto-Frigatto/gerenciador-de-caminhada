@@ -22,7 +22,7 @@ class App:
             (3, self.mean_walking_time),
             (4, self.walking_time_std),
             (5, self.total_mileage),
-            (6, self.mean_monthly_mileage),
+            (6, self.monthly_mean_daily_mileage),
             (7, self.mean_monthly_mileage_plot),
             (8, self.walking_time_plot),
             (9, self.exit)
@@ -112,10 +112,10 @@ class App:
             else app.messages.no_walks()
         )
 
-    def mean_monthly_mileage(self):
+    def monthly_mean_daily_mileage(self):
         print(
             (f'Quilometragens médias por mês\n\n'
-             f'{self._walking_list.mean_monthly_mileage()}\n')
+             f'{self._walking_list.monthly_mean_daily_mileage()}\n')
             if len(self._walking_list)
             else app.messages.no_walks()
         )

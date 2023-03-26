@@ -67,7 +67,7 @@ class WalkingList:
     def total_mileage(self) -> float:
         return self._df_walking_list[WalkingListColumns.DISTANCE].sum()
 
-    def mean_monthly_mileage(self) -> pd.DataFrame:
+    def monthly_mean_daily_mileage(self) -> pd.DataFrame:
         df_mean_monthly_mileage = pd.DataFrame(
             columns=['Mês', 'Km']
         )
