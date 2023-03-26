@@ -25,7 +25,7 @@ class Walk:
         MIN_DISTANCE = 1
         MAX_DISTANCE = 70
 
-        if distance not in range(MIN_DISTANCE, MAX_DISTANCE + 1):
+        if distance < MIN_DISTANCE or distance > MAX_DISTANCE:
             raise WalkDistanceError()
 
         self._distance = distance
@@ -34,7 +34,7 @@ class Walk:
         MIN_DURATION = 1
         MAX_DURATION = 900
 
-        if duration not in range(MIN_DURATION, MAX_DURATION + 1):
+        if duration < MIN_DURATION or duration > MAX_DURATION:
             raise WalkDurationError()
 
         self._duration = duration
