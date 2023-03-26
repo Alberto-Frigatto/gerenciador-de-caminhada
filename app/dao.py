@@ -1,16 +1,14 @@
 import os
 from .constants import (
     WALKING_LIST_DIRECTORY,
-    WALKING_LIST_FILE_NAME,
+    WALKING_LIST_FILE_PATH,
     WalkingListColumns,
     CSV_SEPARATOR
 )
 
 
 def walking_list_file_exist() -> bool:
-    return os.path.exists(
-        os.path.join('./', WALKING_LIST_DIRECTORY, WALKING_LIST_FILE_NAME)
-    )
+    return os.path.exists(WALKING_LIST_FILE_PATH)
 
 
 def create_walking_list_file() -> None:
@@ -20,7 +18,7 @@ def create_walking_list_file() -> None:
     )
 
     with open(
-        os.path.join('./', WALKING_LIST_DIRECTORY, WALKING_LIST_FILE_NAME),
+        WALKING_LIST_FILE_PATH,
         'w',
         encoding='UTF-8'
     ) as walking_list_file:
