@@ -1,9 +1,9 @@
-import re
 from .exceptions import (
     WalkDateError,
     WalkDistanceError,
     WalkDurationError
 )
+from datetime import datetime
 
 
 class Walk:
@@ -13,31 +13,53 @@ class Walk:
         self._set_duration_if_valid(duration)
 
     def _set_date_if_valid(self, date: str) -> None:
-        formatted_date = date.strip()
-        date_pattern = re.compile('^\d{2}\/\d{2}\/\d{4}$')
+        strip_date = date.strip()
 
-        if not date_pattern.match(formatted_date):
+        if not self._validate_date(strip_date):
             raise WalkDateError()
+
+        formatted_date = datetime.strptime(strip_date, '%d/%m/%Y') \
+            .strftime('%d/%m/%Y')
 
         self._date = formatted_date
 
-    def _set_distance_if_valid(self, distance: float) -> None:
-        MIN_DISTANCE = 1
-        MAX_DISTANCE = 70
+    def _validate_date(self, date: str) -> bool:
+        try:
+            datetime.strptime(date, '%d/%m/%Y')
+        except ValueError:
+            return False
 
-        if distance < MIN_DISTANCE or distance > MAX_DISTANCE:
+        return True
+
+    def _set_distance_if_valid(self, distance: float) -> None:
+        if not self._validate_distance(distance):
             raise WalkDistanceError()
 
         self._distance = distance
 
+    def _validate_distance(self, distance: float) -> bool:
+        MIN_DISTANCE = 1
+        MAX_DISTANCE = 70
+
+        if distance < MIN_DISTANCE or distance > MAX_DISTANCE:
+            return False
+
+        return True
+
     def _set_duration_if_valid(self, duration: float) -> None:
+        if not self._validate_duration(duration):
+            raise WalkDurationError()
+
+        self._duration = self._correct_mins_if_wrong(duration)
+
+    def _validate_duration(self, duration: float) -> bool:
         MIN_DURATION = 1
         MAX_DURATION = 900
 
         if duration < MIN_DURATION or duration > MAX_DURATION:
-            raise WalkDurationError()
+            return False
 
-        self._duration = self._correct_mins_if_wrong(duration)
+        return True
 
     def _correct_mins_if_wrong(self, mins) -> float:
         mins_decimal = round(mins, 2)
