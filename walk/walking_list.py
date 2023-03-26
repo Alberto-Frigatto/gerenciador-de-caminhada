@@ -19,7 +19,8 @@ class WalkingList:
     def __init__(self) -> None:
         self._df_walking_list = pd.read_csv(
             WALKING_LIST_FILE_PATH,
-            sep=CSV_SEPARATOR
+            sep=CSV_SEPARATOR,
+            encoding='UTF-8'
         )
 
     def add_walk(self, walk: Walk) -> None:
@@ -32,5 +33,6 @@ class WalkingList:
     def save(self) -> None:
         self._df_walking_list.to_csv(
             WALKING_LIST_FILE_PATH,
+            sep=CSV_SEPARATOR,
             index=False
         )
