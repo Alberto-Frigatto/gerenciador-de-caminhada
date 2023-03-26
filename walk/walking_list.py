@@ -26,6 +26,9 @@ class WalkingList:
     def __len__(self) -> int:
         return len(self._df_walking_list)
 
+    def __getitem__(self, index) -> Walk:
+        return self._df_walking_list[index]
+
     def add_walk(self, walk: Walk) -> None:
         self._df_walking_list.loc[len(self._df_walking_list)] = {
             WalkingListColumns.DATE: walk.date,
