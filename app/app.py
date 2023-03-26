@@ -1,5 +1,6 @@
 import app.dao
 import app.messages
+from app.constants import WalkingListColumns
 from colorama import Fore
 import os
 import sys
@@ -58,6 +59,7 @@ class App:
         while True:
             try:
                 user_input = int(input('Selecione uma opção: '))
+                print()
 
                 if user_input not in range(1, len(self.OPTIONS) + 1):
                     raise ValueError
@@ -77,16 +79,21 @@ class App:
 
     def view_walks(self):
         print(
-            self._walking_list.walks if len(self._walking_list)
-            else f'{Fore.YELLOW}Sem caminhadas{Fore.RESET}',
-            end='\n\n'
+            f'{self._walking_list.walks}\n' if len(self._walking_list)
+            else app.messages.no_walks()
         )
 
     def create_walk(self):
         pass
 
     def mean_walking_time(self):
-        pass
+        print(
+            (f'Seu tempo médio é: {Fore.YELLOW}'
+             f'{self._walking_list[WalkingListColumns.DURATION].mean()}min\n'
+             f'{Fore.RESET}')
+            if len(self._walking_list)
+            else app.messages.no_walks()
+        )
 
     def walking_time_std(self):
         pass
