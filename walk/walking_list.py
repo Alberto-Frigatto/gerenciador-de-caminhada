@@ -64,6 +64,9 @@ class WalkingList:
 
         return mins_decimal
 
+    def total_mileage(self) -> float:
+        return self._df_walking_list[WalkingListColumns.DISTANCE].sum()
+
     @property
     def walks(self) -> pd.DataFrame:
         return self._df_walking_list
