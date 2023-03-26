@@ -25,3 +25,8 @@ def no_walks() -> None:
     message = f'{Fore.YELLOW}Sem caminhadas{Fore.RESET}\n'
 
     print(message)
+
+def walk_created() -> None:
+    message = f'{Fore.GREEN}Caminhada cadastrada{Fore.RESET}\n'
+
+    print(message)
