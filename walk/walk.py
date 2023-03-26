@@ -37,7 +37,19 @@ class Walk:
         if duration < MIN_DURATION or duration > MAX_DURATION:
             raise WalkDurationError()
 
-        self._duration = duration
+        self._duration = self._correct_mins_if_wrong(duration)
+
+    def _correct_mins_if_wrong(self, mins) -> float:
+        mins_decimal = round(mins, 2)
+        seconds = round(mins_decimal - int(mins_decimal), 2)*100
+
+        if seconds not in range(61):
+            correction = .4
+
+            mins_correct = mins_decimal + correction
+            return mins_correct
+
+        return mins_decimal
 
     @property
     def date(self) -> str:
