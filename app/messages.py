@@ -19,3 +19,9 @@ def invalid_option() -> None:
     message = f'{Fore.RED}Opção inválida{Fore.RESET}\n'
 
     print(message)
+
+
+def no_walks() -> None:
+    message = f'{Fore.YELLOW}Sem caminhadas{Fore.RESET}\n'
+
+    print(message)
