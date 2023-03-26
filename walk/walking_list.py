@@ -36,3 +36,7 @@ class WalkingList:
             sep=CSV_SEPARATOR,
             index=False
         )
+
+    @property
+    def walks(self) -> pd.DataFrame:
+        return self._df_walking_list
