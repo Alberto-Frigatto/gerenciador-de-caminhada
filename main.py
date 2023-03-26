@@ -10,7 +10,7 @@ def main() -> None:
         app.options_menu()
         option_selected = app.get_valid_user_option()
 
-        app.select_option(option_selected)
+        app.execute_option(option_selected)
 
         if option_selected == app.exit_option:
             break

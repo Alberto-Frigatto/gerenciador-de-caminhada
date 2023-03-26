@@ -71,7 +71,7 @@ class App:
             else:
                 return user_input
 
-    def select_option(self, option_selected: int) -> None:
+    def execute_option(self, option_selected: int) -> None:
         for option_index, option in self.OPTIONS:
             if option_selected == option_index:
                 option()
