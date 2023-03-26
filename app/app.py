@@ -2,11 +2,20 @@ import app.dao
 import app.messages
 from colorama import Fore
 import os
+import sys
+
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+root_dir = os.path.join(current_dir, '..')
+sys.path.append(root_dir)
+
+from walk import WalkingList
 
 
 class App:
     def __init__(self) -> None:
         self._create_walking_list_file_if_not_exists()
+        self._walking_list = WalkingList()
         self.OPTIONS = [
             (1, self.view_walks),
             (2, self.create_walk),
@@ -60,6 +69,11 @@ class App:
 
             else:
                 return user_input
+
+    def select_option(self, option_selected: int) -> None:
+        for option_index, option in self.OPTIONS:
+            if option_selected == option_index:
+                option()
 
     def view_walks(self):
         pass
