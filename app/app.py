@@ -76,7 +76,11 @@ class App:
                 option()
 
     def view_walks(self):
-        pass
+        print(
+            self._walking_list.walks if len(self._walking_list)
+            else f'{Fore.YELLOW}Sem caminhadas{Fore.RESET}',
+            end='\n\n'
+        )
 
     def create_walk(self):
         pass
