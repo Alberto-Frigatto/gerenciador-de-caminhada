@@ -26,9 +26,6 @@ class WalkingList:
     def __len__(self) -> int:
         return len(self._df_walking_list)
 
-    def __getitem__(self, index) -> Walk:
-        return self._df_walking_list[index]
-
     def add_walk(self, walk: Walk) -> None:
         self._df_walking_list.loc[len(self._df_walking_list)] = {
             WalkingListColumns.DATE: walk.date,
@@ -42,6 +39,30 @@ class WalkingList:
             sep=CSV_SEPARATOR,
             index=False
         )
+
+    def mean_walking_time(self) -> float:
+        mean_time = self._df_walking_list[WalkingListColumns.DURATION] \
+            .mean()
+
+        return self._correct_mins_if_wrong(mean_time)
+
+    def walking_time_std(self) -> float:
+        std_time = self._df_walking_list[WalkingListColumns.DURATION] \
+            .std(ddof=0)
+
+        return self._correct_mins_if_wrong(std_time)
+
+    def _correct_mins_if_wrong(self, mins) -> float:
+        mins_decimal = round(mins, 2)
+        seconds = round(mins_decimal - int(mins_decimal), 2)*100
+
+        if seconds not in range(61):
+            correction = .4
+
+            mins_correct = mins_decimal + correction
+            return mins_correct
+
+        return mins_decimal
 
     @property
     def walks(self) -> pd.DataFrame:

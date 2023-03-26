@@ -1,6 +1,5 @@
 import app.dao
 import app.messages
-from app.constants import WalkingListColumns
 from colorama import Fore
 import os
 import sys
@@ -89,14 +88,20 @@ class App:
     def mean_walking_time(self):
         print(
             (f'Seu tempo médio é: {Fore.YELLOW}'
-             f'{self._walking_list[WalkingListColumns.DURATION].mean()}min\n'
+             f'{self._walking_list.mean_walking_time()}min\n'
              f'{Fore.RESET}')
             if len(self._walking_list)
             else app.messages.no_walks()
         )
 
     def walking_time_std(self):
-        pass
+        print(
+            (f'O desvio padrão dos tempos é: {Fore.YELLOW}'
+             f'{self._walking_list.walking_time_std()}min\n'
+             f'{Fore.RESET}')
+            if len(self._walking_list)
+            else app.messages.no_walks()
+        )
 
     def total_mileage(self):
         pass
