@@ -113,7 +113,12 @@ class App:
         )
 
     def mean_monthly_mileage(self):
-        pass
+        print(
+            (f'Quilometragens médias por mês\n\n'
+             f'{self._walking_list.mean_monthly_mileage()}\n')
+            if len(self._walking_list)
+            else app.messages.no_walks()
+        )
 
     def mean_monthly_mileage_plot(self):
         pass

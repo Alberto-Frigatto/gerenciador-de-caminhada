@@ -67,6 +67,30 @@ class WalkingList:
     def total_mileage(self) -> float:
         return self._df_walking_list[WalkingListColumns.DISTANCE].sum()
 
+    def mean_monthly_mileage(self) -> pd.DataFrame:
+        df_mean_monthly_mileage = pd.DataFrame(
+            columns=['Mês', 'Km']
+        )
+
+        for month in range(1, 13):
+            month = str(month).zfill(2)
+            mean = self._df_walking_list[self._df_walking_list[
+                WalkingListColumns.DATE].str.match(
+                    '^(\d{2}/' + month + '/\d{4})$'
+                )][WalkingListColumns.DISTANCE].mean()
+            rounded_mean = round(mean, 2)
+
+            df_mean_monthly_mileage.loc[len(df_mean_monthly_mileage)] = \
+                {'Mês': month, 'Km': rounded_mean}
+
+        df_mean_monthly_mileage.dropna(inplace=True)
+
+        df_mean_monthly_mileage.index = range(
+            len(df_mean_monthly_mileage)
+        )
+
+        return df_mean_monthly_mileage
+
     @property
     def walks(self) -> pd.DataFrame:
         return self._df_walking_list
