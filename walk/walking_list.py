@@ -23,6 +23,9 @@ class WalkingList:
             encoding='UTF-8'
         )
 
+    def __len__(self) -> int:
+        return len(self._df_walking_list)
+
     def add_walk(self, walk: Walk) -> None:
         self._df_walking_list.loc[len(self._df_walking_list)] = {
             WalkingListColumns.DATE: walk.date,
