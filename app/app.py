@@ -27,6 +27,10 @@ class App:
         os.system('cls')
         app.messages.welcome()
 
+    def end(self) -> None:
+        os.system('cls')
+        app.messages.end()
+
     def options_menu(self) -> None:
         menu = (
             f'{Fore.YELLOW}1{Fore.RESET} - Visualizar caminhadas\n'
@@ -83,3 +87,7 @@ class App:
 
     def exit(self):
         pass
+
+    @property
+    def exit_option(self) -> int:
+        return self.OPTIONS[-1][0]
