@@ -104,7 +104,13 @@ class App:
         )
 
     def total_mileage(self):
-        pass
+        print(
+            (f'Sua quilometragem total é: {Fore.YELLOW}'
+             f'{self._walking_list.total_mileage()}km\n'
+             f'{Fore.RESET}')
+            if len(self._walking_list)
+            else app.messages.no_walks()
+        )
 
     def mean_monthly_mileage(self):
         pass
