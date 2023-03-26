@@ -23,7 +23,7 @@ class App:
             (4, self.walking_time_std),
             (5, self.total_mileage),
             (6, self.monthly_mean_daily_mileage),
-            (7, self.mean_monthly_mileage_plot),
+            (7, self.monthly_mean_daily_mileage_plot),
             (8, self.walking_time_plot),
             (9, self.exit)
         ]
