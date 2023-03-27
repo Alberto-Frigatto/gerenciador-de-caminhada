@@ -3,13 +3,19 @@ import app.messages
 from colorama import Fore
 import os
 import sys
+from datetime import datetime
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 root_dir = os.path.join(current_dir, '..')
 sys.path.append(root_dir)
 
-from walk import WalkingList
+from walk import (
+    Walk,
+    WalkingList
+)
+
+from walk.exceptions import WalkError
 
 
 class App:
@@ -82,8 +88,21 @@ class App:
             else app.messages.no_walks()
         )
 
-    def create_walk(self):
-        pass
+    def create_walk(self) -> None:
+        while True:
+            date = input('Informe a data da caminhada (dd/mm/aaaa): ')
+            distance = input('Informe a distância percorrida (Km): ')
+            duration = input('Informe a duração da caminhada (min): ')
+
+            try:
+                walk = Walk(date, distance, duration)
+            except WalkError as walk_error:
+                os.system('cls')
+                print(walk_error)
+            else:
+                self._walking_list.add_walk(walk)
+                app.messages.walk_created()
+                break
 
     def mean_walking_time(self):
         print(
