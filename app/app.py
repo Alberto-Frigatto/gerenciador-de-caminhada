@@ -147,6 +147,7 @@ class App:
 
     def exit(self):
         self._walking_list.save()
+        app.messages.walking_list_saved()
 
     @property
     def exit_option(self) -> int:
