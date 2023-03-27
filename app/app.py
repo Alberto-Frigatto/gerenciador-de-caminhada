@@ -25,13 +25,16 @@ class App:
         self.OPTIONS = [
             (1, self.view_walks),
             (2, self.create_walk),
-            (3, self.mean_walking_time),
-            (4, self.walking_time_std),
-            (5, self.total_mileage),
-            (6, self.monthly_mean_daily_mileage),
-            (7, self.monthly_mean_daily_mileage_plot),
-            (8, self.walking_time_plot),
-            (9, self.exit)
+            (3, self.delete_walk),
+            (4, self.mean_walking_time),
+            (5, self.walking_time_std),
+            (6, self.total_mileage),
+            (7, self.monthly_mean_daily_mileage),
+            (8, self.total_monthly_mileage),
+            (9, self.monthly_mean_daily_mileage_plot),
+            (10, self.total_monthly_mileage_plot),
+            (11, self.walking_time_plot),
+            (12, self.exit)
         ]
 
     def _create_walking_list_file_if_not_exists(self) -> None:
@@ -50,13 +53,16 @@ class App:
         menu = (
             f'{Fore.YELLOW}1{Fore.RESET} - Visualizar caminhadas\n'
             f'{Fore.YELLOW}2{Fore.RESET} - Cadastrar caminhada\n'
-            f'{Fore.YELLOW}3{Fore.RESET} - Tempo médio das caminhadas\n'
-            f'{Fore.YELLOW}4{Fore.RESET} - Desvio padrão dos tempos das caminhadas\n'
-            f'{Fore.YELLOW}5{Fore.RESET} - Quilometragem total\n'
-            f'{Fore.YELLOW}6{Fore.RESET} - Quilometragem diária média mensal\n'
-            f'{Fore.YELLOW}7{Fore.RESET} - Gráfico da quilometragem diária média mensal\n'
-            f'{Fore.YELLOW}8{Fore.RESET} - Gráfico dos tempos das caminhadas\n'
-            f'{Fore.YELLOW}9{Fore.RESET} - Sair\n'
+            f'{Fore.YELLOW}3{Fore.RESET} - Excluir caminhada\n'
+            f'{Fore.YELLOW}4{Fore.RESET} - Tempo médio das caminhadas\n'
+            f'{Fore.YELLOW}5{Fore.RESET} - Desvio padrão dos tempos das caminhadas\n'
+            f'{Fore.YELLOW}6{Fore.RESET} - Quilometragem total\n'
+            f'{Fore.YELLOW}7{Fore.RESET} - Quilometragem diária média mensal\n'
+            f'{Fore.YELLOW}8{Fore.RESET} - Quilometragem total mensal\n'
+            f'{Fore.YELLOW}9{Fore.RESET} - Gráfico da quilometragem diária média mensal\n'
+            f'{Fore.YELLOW}10{Fore.RESET} - Gráfico da quilometragem total mensal\n'
+            f'{Fore.YELLOW}11{Fore.RESET} - Gráfico dos tempos das caminhadas\n'
+            f'{Fore.YELLOW}12{Fore.RESET} - Sair\n'
         )
         print(menu)
 
@@ -82,7 +88,7 @@ class App:
             if option_selected == option_index:
                 option()
 
-    def view_walks(self):
+    def view_walks(self) -> None:
         print(
             f'{self._walking_list.walks}\n'
         ) if len(self._walking_list) \
@@ -104,7 +110,10 @@ class App:
                 app.messages.walk_created()
                 break
 
-    def mean_walking_time(self):
+    def delete_walk(self) -> None:
+        pass
+
+    def mean_walking_time(self) -> None:
         print(
             (f'Seu tempo médio é: {Fore.YELLOW}'
              f'{self._walking_list.mean_walking_time()}min\n'
@@ -112,7 +121,7 @@ class App:
         ) if len(self._walking_list) \
             else app.messages.no_walks()
 
-    def walking_time_std(self):
+    def walking_time_std(self) -> None:
         print(
             (f'O desvio padrão dos tempos é: {Fore.YELLOW}'
              f'{self._walking_list.walking_time_std()}min\n'
@@ -120,7 +129,7 @@ class App:
         ) if len(self._walking_list) \
             else app.messages.no_walks()
 
-    def total_mileage(self):
+    def total_mileage(self) -> None:
         print(
             (f'Sua quilometragem total é: {Fore.YELLOW}'
              f'{self._walking_list.total_mileage()}km\n'
@@ -128,23 +137,29 @@ class App:
         ) if len(self._walking_list) \
             else app.messages.no_walks()
 
-    def monthly_mean_daily_mileage(self):
+    def monthly_mean_daily_mileage(self) -> None:
         print(
             (f'Quilometragens médias por mês\n\n'
              f'{self._walking_list.monthly_mean_daily_mileage()}\n')
         ) if len(self._walking_list) \
             else app.messages.no_walks()
 
-    def monthly_mean_daily_mileage_plot(self):
+    def total_monthly_mileage(self) -> None:
+        pass
+
+    def monthly_mean_daily_mileage_plot(self) -> None:
         self._walking_list.monthly_mean_daily_mileage_plot() \
             if len(self._walking_list) \
             else app.messages.no_walks()
 
-    def walking_time_plot(self):
+    def total_monthly_mileage_plot(self) -> None:
+        pass
+
+    def walking_time_plot(self) -> None:
         self._walking_list.walking_time_plot() if len(self._walking_list) \
             else app.messages.no_walks()
 
-    def exit(self):
+    def exit(self) -> None:
         self._walking_list.save()
         app.messages.walking_list_saved()
 
