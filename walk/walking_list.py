@@ -142,6 +142,17 @@ class WalkingList:
 
         plt.show()
 
+    def total_monthly_mileage_plot(self) -> None:
+        df_total_monthly_miliage = self.total_monthly_mileage()
+
+        plot = df_total_monthly_miliage.plot.bar('Mês', 'Km', grid=True)
+
+        plot.set_title('Quilometragem total mensal')
+        plot.set_xlabel('Mês')
+        plot.set_ylabel('Distância (Km)')
+
+        plt.show()
+
     def walking_time_plot(self) -> None:
         plt.plot(
             self._df_walking_list[WalkingListColumns.DATE],

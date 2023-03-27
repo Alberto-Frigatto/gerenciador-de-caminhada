@@ -210,7 +210,9 @@ class App:
             else app.messages.no_walks()
 
     def total_monthly_mileage_plot(self) -> None:
-        pass
+        self._walking_list.total_monthly_mileage_plot() \
+            if len(self._walking_list) \
+            else app.messages.no_walks()
 
     def walking_time_plot(self) -> None:
         self._walking_list.walking_time_plot() if len(self._walking_list) \
