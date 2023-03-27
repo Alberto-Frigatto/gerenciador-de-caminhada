@@ -84,9 +84,9 @@ class App:
 
     def view_walks(self):
         print(
-            f'{self._walking_list.walks}\n' if len(self._walking_list)
+            f'{self._walking_list.walks}\n'
+        ) if len(self._walking_list) \
             else app.messages.no_walks()
-        )
 
     def create_walk(self) -> None:
         while True:
