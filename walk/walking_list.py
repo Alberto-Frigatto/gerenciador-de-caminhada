@@ -113,7 +113,9 @@ class WalkingList:
     def walking_time_plot(self) -> None:
         plt.plot(
             self._df_walking_list[WalkingListColumns.DATE],
-            self._df_walking_list[WalkingListColumns.DURATION]
+            self._df_walking_list[WalkingListColumns.DURATION],
+            marker='o',
+            markersize=7
         )
         plt.grid(True, linestyle=':', color='gray')
         plt.xlabel('Data')
