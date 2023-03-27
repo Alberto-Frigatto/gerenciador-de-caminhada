@@ -106,9 +106,26 @@ class App:
                 os.system('cls')
                 print(walk_error)
             else:
-                self._walking_list.add_walk(walk)
-                app.messages.walk_created()
+                if self._confirm_walk_creation():
+                    self._walking_list.add_walk(walk)
+                    self._walking_list.save()
+                    app.messages.walk_created()
+                else:
+                    print()
+
                 break
+
+    def _confirm_walk_creation(self) -> bool:
+        while True:
+            user_input = input(
+                f'Deseja criar a caminhada? {Fore.YELLOW}(s/n){Fore.RESET}: '
+            ).lower()
+
+            if user_input not in ['s', 'n']:
+                app.messages.invalid_option()
+                continue
+
+            return True if user_input == 's' else False
 
     def delete_walk(self) -> None:
         pass
