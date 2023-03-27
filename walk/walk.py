@@ -35,13 +35,18 @@ class Walk:
         if not self._validate_distance(distance):
             raise WalkDistanceError()
 
-        self._distance = distance
+        self._distance = float(distance)
 
     def _validate_distance(self, distance: float) -> bool:
         MIN_DISTANCE = 1
         MAX_DISTANCE = 70
 
-        if distance < MIN_DISTANCE or distance > MAX_DISTANCE:
+        try:
+            distance_float = float(distance)
+        except ValueError:
+            return False
+
+        if distance_float < MIN_DISTANCE or distance_float > MAX_DISTANCE:
             return False
 
         return True
@@ -56,13 +61,18 @@ class Walk:
         MIN_DURATION = 1
         MAX_DURATION = 900
 
-        if duration < MIN_DURATION or duration > MAX_DURATION:
+        try:
+            duration_float = float(duration)
+        except ValueError:
+            return False
+
+        if duration_float < MIN_DURATION or duration_float > MAX_DURATION:
             return False
 
         return True
 
     def _correct_mins_if_wrong(self, mins) -> float:
-        mins_decimal = round(mins, 2)
+        mins_decimal = round(float(mins), 2)
         seconds = round(mins_decimal - int(mins_decimal), 2)*100
 
         if seconds not in range(61):
