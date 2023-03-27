@@ -128,7 +128,43 @@ class App:
             return True if user_input == 's' else False
 
     def delete_walk(self) -> None:
-        pass
+        if len(self._walking_list):
+            self.view_walks()
+            walk_to_be_deleted = self.get_walk_to_be_deleted()
+
+            if self._confirm_delete_walk():
+                self._walking_list.delete_walk(walk_to_be_deleted)
+                self._walking_list.save()
+                app.messages.walk_created()
+        else:
+            app.messages.no_walks()
+
+    def get_walk_to_be_deleted(self) -> int:
+        while True:
+            try:
+                user_input = input(
+                    'Digite o índice da caminhada a ser deletada: '
+                )
+                walk_index = int(user_input)
+
+                if walk_index not in list(self._walking_list.index):
+                    raise ValueError()
+            except ValueError:
+                app.messages.non_existent_walk(user_input)
+            else:
+                return walk_index
+
+    def _confirm_delete_walk(self) -> None:
+        while True:
+            user_input = input(
+                f'Deseja deletar a caminhada? {Fore.YELLOW}(s/n){Fore.RESET}: '
+            ).lower()
+
+            if user_input not in ['s', 'n']:
+                app.messages.invalid_option()
+                continue
+
+            return True if user_input == 's' else False
 
     def mean_walking_time(self) -> None:
         print(

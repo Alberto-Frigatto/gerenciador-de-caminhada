@@ -44,6 +44,12 @@ class WalkingList:
             index=False
         )
 
+    def delete_walk(self, walk_index: int) -> None:
+        self._df_walking_list.drop(walk_index, inplace=True)
+        self._df_walking_list.index = range(
+            len(self._df_walking_list)
+        )
+
     def mean_walking_time(self) -> float:
         mean_time = self._df_walking_list[WalkingListColumns.DURATION] \
             .mean()
@@ -126,3 +132,7 @@ class WalkingList:
     @property
     def walks(self) -> pd.DataFrame:
         return self._df_walking_list
+
+    @property
+    def index(self) -> list[int]:
+        return self._df_walking_list.index
