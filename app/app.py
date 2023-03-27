@@ -143,7 +143,7 @@ class App:
         pass
 
     def walking_time_plot(self):
-        pass
+        self._walking_list.walking_time_plot()
 
     def exit(self):
         self._walking_list.save()

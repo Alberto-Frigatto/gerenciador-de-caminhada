@@ -1,6 +1,7 @@
 import os
 import sys
 import pandas as pd
+import matplotlib.pyplot as plt
 from .walk import Walk
 
 
@@ -13,6 +14,9 @@ from app.constants import (
     WALKING_LIST_FILE_PATH,
     WalkingListColumns
 )
+
+
+plt.rc('figure', figsize=(10, 6))
 
 
 class WalkingList:
@@ -90,6 +94,17 @@ class WalkingList:
         )
 
         return df_mean_monthly_mileage
+
+    def walking_time_plot(self) -> None:
+        plt.plot(
+            self._df_walking_list[WalkingListColumns.DATE],
+            self._df_walking_list[WalkingListColumns.DURATION]
+        )
+        plt.grid(True, linestyle=':', color='gray')
+        plt.xlabel('Data')
+        plt.ylabel('Duração (min)')
+
+        plt.show()
 
     @property
     def walks(self) -> pd.DataFrame:
