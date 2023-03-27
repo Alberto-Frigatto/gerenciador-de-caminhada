@@ -31,3 +31,9 @@ def walk_created() -> None:
     message = f'{Fore.GREEN}Caminhada cadastrada{Fore.RESET}\n'
 
     print(message)
+
+
+def walking_list_saved() -> None:
+    message = f'{Fore.GREEN}Lista de caminhada salva{Fore.RESET}\n'
+
+    print(message)
