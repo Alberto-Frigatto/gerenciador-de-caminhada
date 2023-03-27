@@ -136,6 +136,7 @@ class WalkingList:
             marker='o',
             markersize=7
         )
+        plt.title('Quilometragem diária média mensal')
         plt.grid(True, linestyle=':', color='gray')
         plt.xlabel('Mês')
         plt.ylabel('Distância (Km)')
@@ -160,6 +161,7 @@ class WalkingList:
             marker='o',
             markersize=7
         )
+        plt.title('Tempos das caminhadas')
         plt.grid(True, linestyle=':', color='gray')
         plt.xlabel('Data')
         plt.ylabel('Duração (min)')
