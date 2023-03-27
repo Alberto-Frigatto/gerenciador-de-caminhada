@@ -73,7 +73,7 @@ class Walk:
 
     def _correct_mins_if_wrong(self, mins) -> float:
         mins_decimal = round(float(mins), 2)
-        seconds = round(mins_decimal - int(mins_decimal), 2)*100
+        seconds = round((mins_decimal - int(mins_decimal))*100, 2)
 
         if seconds not in range(61):
             correction = .4
