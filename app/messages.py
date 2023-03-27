@@ -40,6 +40,6 @@ def walking_list_saved() -> None:
 
 
 def non_existent_walk(walk_index) -> None:
-    message = f'{Fore.RED}A caminhada {walk_index} não existe{Fore.RESET}'
+    message = f'{Fore.RED}A caminhada {walk_index} não existe{Fore.RESET}\n'
 
     print(message)
