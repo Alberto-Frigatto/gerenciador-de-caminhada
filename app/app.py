@@ -146,7 +146,7 @@ class App:
         pass
 
     def exit(self):
-        pass
+        self._walking_list.save()
 
     @property
     def exit_option(self) -> int:
