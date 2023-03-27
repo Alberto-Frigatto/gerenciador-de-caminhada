@@ -109,41 +109,38 @@ class App:
             (f'Seu tempo médio é: {Fore.YELLOW}'
              f'{self._walking_list.mean_walking_time()}min\n'
              f'{Fore.RESET}')
-            if len(self._walking_list)
+        ) if len(self._walking_list) \
             else app.messages.no_walks()
-        )
 
     def walking_time_std(self):
         print(
             (f'O desvio padrão dos tempos é: {Fore.YELLOW}'
              f'{self._walking_list.walking_time_std()}min\n'
              f'{Fore.RESET}')
-            if len(self._walking_list)
+        ) if len(self._walking_list) \
             else app.messages.no_walks()
-        )
 
     def total_mileage(self):
         print(
             (f'Sua quilometragem total é: {Fore.YELLOW}'
              f'{self._walking_list.total_mileage()}km\n'
              f'{Fore.RESET}')
-            if len(self._walking_list)
+        ) if len(self._walking_list) \
             else app.messages.no_walks()
-        )
 
     def monthly_mean_daily_mileage(self):
         print(
             (f'Quilometragens médias por mês\n\n'
              f'{self._walking_list.monthly_mean_daily_mileage()}\n')
-            if len(self._walking_list)
+        ) if len(self._walking_list) \
             else app.messages.no_walks()
-        )
 
     def monthly_mean_daily_mileage_plot(self):
         pass
 
     def walking_time_plot(self):
-        self._walking_list.walking_time_plot()
+        self._walking_list.walking_time_plot() if len(self._walking_list) \
+            else app.messages.no_walks()
 
     def exit(self):
         self._walking_list.save()
