@@ -1,4 +1,5 @@
 from app import App
+import os
 
 
 def main() -> None:
@@ -9,6 +10,8 @@ def main() -> None:
     while True:
         app.options_menu()
         option_selected = app.get_valid_user_option()
+
+        os.system('cls')
 
         app.execute_option(option_selected)
 
