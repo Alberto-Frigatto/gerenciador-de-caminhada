@@ -135,7 +135,7 @@ class App:
             if self._confirm_delete_walk():
                 self._walking_list.delete_walk(walk_to_be_deleted)
                 self._walking_list.save()
-                app.messages.walk_created()
+                app.messages.walk_deleted()
         else:
             app.messages.no_walks()
 
