@@ -51,7 +51,7 @@ class App:
             f'{Fore.YELLOW}1{Fore.RESET} - Visualizar caminhadas\n'
             f'{Fore.YELLOW}2{Fore.RESET} - Cadastrar caminhada\n'
             f'{Fore.YELLOW}3{Fore.RESET} - Tempo médio das caminhadas\n'
-            f'{Fore.YELLOW}4{Fore.RESET} - Desvio médio dos tempos das caminhadas\n'
+            f'{Fore.YELLOW}4{Fore.RESET} - Desvio padrão dos tempos das caminhadas\n'
             f'{Fore.YELLOW}5{Fore.RESET} - Quilometragem total\n'
             f'{Fore.YELLOW}6{Fore.RESET} - Quilometragem diária média mensal\n'
             f'{Fore.YELLOW}7{Fore.RESET} - Gráfico da quilometragem diária média mensal\n'
