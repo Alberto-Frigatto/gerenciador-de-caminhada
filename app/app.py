@@ -198,7 +198,11 @@ class App:
             else app.messages.no_walks()
 
     def total_monthly_mileage(self) -> None:
-        pass
+        print(
+            (f'Quilometragem total mensal\n\n'
+             f'{self._walking_list.total_monthly_mileage()}\n')
+        ) if len(self._walking_list) \
+            else app.messages.no_walks()
 
     def monthly_mean_daily_mileage_plot(self) -> None:
         self._walking_list.monthly_mean_daily_mileage_plot() \

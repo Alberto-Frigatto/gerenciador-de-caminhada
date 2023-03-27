@@ -101,6 +101,32 @@ class WalkingList:
 
         return df_mean_monthly_mileage
 
+    def total_monthly_mileage(self) -> pd.DataFrame:
+        df_total_monthly_mileage = pd.DataFrame(
+            columns=['Mês', 'Km']
+        )
+
+        for month in range(1, 13):
+            month = str(month).zfill(2)
+            total = self._df_walking_list[self._df_walking_list[
+                WalkingListColumns.DATE].str.match(
+                    '^(\d{2}/' + month + '/\d{4})$'
+                )][WalkingListColumns.DISTANCE].sum()
+            rounded_total = round(total, 2)
+
+            df_total_monthly_mileage.loc[len(df_total_monthly_mileage)] = \
+                {'Mês': month, 'Km': rounded_total}
+
+        month_with_empty_mileage = df_total_monthly_mileage['Km'] == 0
+        df_total_monthly_mileage = \
+            df_total_monthly_mileage[~month_with_empty_mileage]
+
+        df_total_monthly_mileage.index = range(
+            len(df_total_monthly_mileage)
+        )
+
+        return df_total_monthly_mileage
+
     def monthly_mean_daily_mileage_plot(self) -> None:
         df_mean_monthly_miliage = self.monthly_mean_daily_mileage()
 
