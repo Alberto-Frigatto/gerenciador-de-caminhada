@@ -95,6 +95,21 @@ class WalkingList:
 
         return df_mean_monthly_mileage
 
+    def monthly_mean_daily_mileage_plot(self) -> None:
+        df_mean_monthly_miliage = self.monthly_mean_daily_mileage()
+
+        plt.plot(
+            df_mean_monthly_miliage['Mês'],
+            df_mean_monthly_miliage['Km'],
+            marker='o',
+            markersize=7
+        )
+        plt.grid(True, linestyle=':', color='gray')
+        plt.xlabel('Mês')
+        plt.ylabel('Distância (Km)')
+
+        plt.show()
+
     def walking_time_plot(self) -> None:
         plt.plot(
             self._df_walking_list[WalkingListColumns.DATE],
