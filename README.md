@@ -41,12 +41,10 @@ python main.py
 - [4 - Tempo médio das caminhadas](#4---tempo-médio-das-caminhadas)
 - [5 - Desvio padrão dos tempos das caminhadas](#5---desvio-padrão-dos-tempos-das-caminhadas)
 - [6 - Quilometragem total](#6---quilometragem-total)
-- [7 - Quilometragem diária média mensal](#7---quilometragem-diária-média-mensal)
-- [8 - Quilometragem total mensal](#8---quilometragem-total-mensal)
-- [9 - Gráfico da quilometragem diária média mensal](#9---gráfico-da-quilometragem-diária-média-mensal)
-- [10 - Gráfico da quilometragem total mensal](#10---gráfico-da-quilometragem-total-mensal)
-- [11 - Gráfico dos tempos das caminhadas](#11---gráfico-dos-tempos-das-caminhadas)
-- [12 - Sair](#12---sair)
+- [7 - Quilometragem total mensal](#8---quilometragem-total-mensal)
+- [8 - Gráfico da quilometragem total mensal](#10---gráfico-da-quilometragem-total-mensal)
+- [9 - Gráfico dos tempos das caminhadas](#11---gráfico-dos-tempos-das-caminhadas)
+- [10 - Sair](#12---sair)
 
 ### 1 - Visualizar caminhadas
 
@@ -76,27 +74,19 @@ Exibirá o desvio padrão dos tempos das caminhadas
 
 Exibirá a quilometragem total somando todas as distâncias das caminhadas
 
-### 7 - Quilometragem diária média mensal
-
-Exibirá o quanto você andou diariamente em média por mês
-
-### 8 - Quilometragem total mensal
+### 7 - Quilometragem total mensal
 
 Exibirá o quanto você andou por mês
 
-### 9 - Gráfico da quilometragem diária média mensal
-
-Exibirá o gráfico de quanto você andou diariamente em média por mês
-
-### 10 - Gráfico da quilometragem total mensal
+### 8 - Gráfico da quilometragem total mensal
 
 Exibirá o gráfico do quanto você andou por mês
 
-### 11 - Gráfico dos tempos das caminhadas
+### 9 - Gráfico dos tempos das caminhadas
 
 Exibirá o gráfico dos tempos de suas caminhadas
 
-### 12 - Sair
+### 10 - Sair
 
 Salvará e encerrará o app
 
