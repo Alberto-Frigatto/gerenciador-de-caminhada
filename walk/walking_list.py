@@ -77,30 +77,6 @@ class WalkingList:
     def total_mileage(self) -> float:
         return self._df_walking_list[WalkingListColumns.DISTANCE].sum()
 
-    def monthly_mean_daily_mileage(self) -> pd.DataFrame:
-        df_mean_monthly_mileage = pd.DataFrame(
-            columns=['Mês', 'Km']
-        )
-
-        for month in range(1, 13):
-            month = str(month).zfill(2)
-            mean = self._df_walking_list[self._df_walking_list[
-                WalkingListColumns.DATE].str.match(
-                    '^(\d{2}/' + month + '/\d{4})$'
-                )][WalkingListColumns.DISTANCE].mean()
-            rounded_mean = round(mean, 2)
-
-            df_mean_monthly_mileage.loc[len(df_mean_monthly_mileage)] = \
-                {'Mês': month, 'Km': rounded_mean}
-
-        df_mean_monthly_mileage.dropna(inplace=True)
-
-        df_mean_monthly_mileage.index = range(
-            len(df_mean_monthly_mileage)
-        )
-
-        return df_mean_monthly_mileage
-
     def total_monthly_mileage(self) -> pd.DataFrame:
         df_total_monthly_mileage = pd.DataFrame(
             columns=['Mês', 'Km']
@@ -126,22 +102,6 @@ class WalkingList:
         )
 
         return df_total_monthly_mileage
-
-    def monthly_mean_daily_mileage_plot(self) -> None:
-        df_mean_monthly_miliage = self.monthly_mean_daily_mileage()
-
-        plt.plot(
-            df_mean_monthly_miliage['Mês'],
-            df_mean_monthly_miliage['Km'],
-            marker='o',
-            markersize=7
-        )
-        plt.title('Quilometragem diária média mensal')
-        plt.grid(True, linestyle=':', color='gray')
-        plt.xlabel('Mês')
-        plt.ylabel('Distância (Km)')
-
-        plt.show()
 
     def total_monthly_mileage_plot(self) -> None:
         df_total_monthly_miliage = self.total_monthly_mileage()
