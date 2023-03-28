@@ -3,7 +3,6 @@ import app.messages
 from colorama import Fore
 import os
 import sys
-from datetime import datetime
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
