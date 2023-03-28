@@ -5,8 +5,11 @@ Sistema para gerenciar o seu exercício, oferecendo informações e estatística
 ## Créditos
 
 **Autor**: Alberto Frigatto
+
 **Email**: albertofrigatto.comercial@gmail.com
+
 **LinkedIn**: [Clique aqui](https://www.linkedin.com/in/alberto-frigatto-de-andrade-ferreira-a72022251/)
+
 
 ## Índices
 
