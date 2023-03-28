@@ -27,6 +27,7 @@ git clone https://github.com/Alberto-Frigatto/gerenciador-de-caminhada.git
 Estando na pasta do projeto, ative o ambiente virtual e execute o projeto:
 
 ```
+python -m venv .venv
 .venv/scripts/activate
 pip install -r requirements.txt
 python main.py
