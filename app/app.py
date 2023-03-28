@@ -28,12 +28,10 @@ class App:
             (4, self.mean_walking_time),
             (5, self.walking_time_std),
             (6, self.total_mileage),
-            (7, self.monthly_mean_daily_mileage),
-            (8, self.total_monthly_mileage),
-            (9, self.monthly_mean_daily_mileage_plot),
-            (10, self.total_monthly_mileage_plot),
-            (11, self.walking_time_plot),
-            (12, self.exit)
+            (7, self.total_monthly_mileage),
+            (8, self.total_monthly_mileage_plot),
+            (9, self.walking_time_plot),
+            (10, self.exit)
         ]
 
     def _create_walking_list_file_if_not_exists(self) -> None:
@@ -56,12 +54,10 @@ class App:
             f'{Fore.YELLOW}4{Fore.RESET} - Tempo médio das caminhadas\n'
             f'{Fore.YELLOW}5{Fore.RESET} - Desvio padrão dos tempos das caminhadas\n'
             f'{Fore.YELLOW}6{Fore.RESET} - Quilometragem total\n'
-            f'{Fore.YELLOW}7{Fore.RESET} - Quilometragem diária média mensal\n'
-            f'{Fore.YELLOW}8{Fore.RESET} - Quilometragem total mensal\n'
-            f'{Fore.YELLOW}9{Fore.RESET} - Gráfico da quilometragem diária média mensal\n'
-            f'{Fore.YELLOW}10{Fore.RESET} - Gráfico da quilometragem total mensal\n'
-            f'{Fore.YELLOW}11{Fore.RESET} - Gráfico dos tempos das caminhadas\n'
-            f'{Fore.YELLOW}12{Fore.RESET} - Sair\n'
+            f'{Fore.YELLOW}7{Fore.RESET} - Quilometragem total mensal\n'
+            f'{Fore.YELLOW}8{Fore.RESET} - Gráfico da quilometragem total mensal\n'
+            f'{Fore.YELLOW}9{Fore.RESET} - Gráfico dos tempos das caminhadas\n'
+            f'{Fore.YELLOW}10{Fore.RESET} - Sair\n'
         )
         print(menu)
 
@@ -189,23 +185,11 @@ class App:
         ) if len(self._walking_list) \
             else app.messages.no_walks()
 
-    def monthly_mean_daily_mileage(self) -> None:
-        print(
-            (f'Quilometragens médias por mês\n\n'
-             f'{self._walking_list.monthly_mean_daily_mileage()}\n')
-        ) if len(self._walking_list) \
-            else app.messages.no_walks()
-
     def total_monthly_mileage(self) -> None:
         print(
             (f'Quilometragem total mensal\n\n'
              f'{self._walking_list.total_monthly_mileage()}\n')
         ) if len(self._walking_list) \
-            else app.messages.no_walks()
-
-    def monthly_mean_daily_mileage_plot(self) -> None:
-        self._walking_list.monthly_mean_daily_mileage_plot() \
-            if len(self._walking_list) \
             else app.messages.no_walks()
 
     def total_monthly_mileage_plot(self) -> None:
