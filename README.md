@@ -18,13 +18,15 @@ Sistema para gerenciar o seu exercício, oferecendo informações e estatística
 
 ## iniciando
 
-Baixe o projeto via GitHub:
+Instale o Python na versão 3.11.2. [Clique aqui para baixar](https://www.python.org/downloads/)
+
+Baixe o projeto via GitHub
 
 ```
 git clone https://github.com/Alberto-Frigatto/gerenciador-de-caminhada.git
 ```
 
-Estando na pasta do projeto, ative o ambiente virtual e execute o projeto:
+Estando na pasta do projeto, ative o ambiente virtual e execute o projeto
 
 ```
 python -m venv .venv
