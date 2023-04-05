@@ -26,6 +26,11 @@ class WalkingList:
             sep=CSV_SEPARATOR,
             encoding='UTF-8'
         )
+        self._df_walking_list.rename_axis(
+            'Índice',
+            axis='columns',
+            inplace=True
+        )
 
     def __len__(self) -> int:
         return len(self._df_walking_list)
