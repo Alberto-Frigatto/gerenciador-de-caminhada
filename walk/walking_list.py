@@ -70,12 +70,15 @@ class WalkingList:
             correction = .4
 
             mins_correct = mins_decimal + correction
-            return mins_correct
+            return round(mins_correct, 2)
 
         return mins_decimal
 
     def total_mileage(self) -> float:
-        return self._df_walking_list[WalkingListColumns.DISTANCE].sum()
+        return round(
+            self._df_walking_list[WalkingListColumns.DISTANCE].sum(),
+            2
+        )
 
     def total_monthly_mileage(self) -> pd.DataFrame:
         df_total_monthly_mileage = pd.DataFrame(
