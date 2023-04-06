@@ -1,5 +1,4 @@
 from app import App
-import os
 
 
 def main() -> None:
@@ -11,7 +10,7 @@ def main() -> None:
         app.options_menu()
         option_selected = app.get_valid_user_option()
 
-        os.system('cls')
+        app.clear_screen()
 
         app.execute_option(option_selected)
 

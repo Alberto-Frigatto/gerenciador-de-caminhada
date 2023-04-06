@@ -26,9 +26,42 @@ class WalkingList:
             sep=CSV_SEPARATOR,
             encoding='UTF-8'
         )
+        self._df_walking_list.rename_axis(
+            'Índice',
+            axis='columns',
+            inplace=True
+        )
 
     def __len__(self) -> int:
         return len(self._df_walking_list)
+
+    def show_walks(self) -> None:
+        _, ax = plt.subplots()
+
+        table_width = 0.8
+        table_height = 0.8
+        table_x = 0.1
+        table_y = 0.1
+
+        table = ax.table(
+            cellText=self._df_walking_list.values,
+            colLabels=[
+                WalkingListColumns.DATE,
+                f'{WalkingListColumns.DISTANCE} (Km)',
+                f'{WalkingListColumns.DURATION} (min)',
+            ],
+            loc='center',
+            cellLoc='center',
+            bbox=[table_x, table_y, table_width, table_height]
+        )
+        table.auto_set_column_width(
+            list(range(len(self._df_walking_list.columns)))
+        )
+        ax.axis('off')
+        plt.show()
+
+    def show_walks_with_index(self) -> None:
+        return self._df_walking_list
 
     def add_walk(self, walk: Walk) -> None:
         self._df_walking_list.loc[len(self._df_walking_list)] = {
@@ -118,7 +151,8 @@ class WalkingList:
         plt.show()
 
     def walking_time_plot(self) -> None:
-        plt.plot(
+        _, ax = plt.subplots()
+        ax.plot(
             self._df_walking_list[WalkingListColumns.DATE],
             self._df_walking_list[WalkingListColumns.DURATION],
             marker='o',
@@ -128,6 +162,7 @@ class WalkingList:
         plt.grid(True, linestyle=':', color='gray')
         plt.xlabel('Data')
         plt.ylabel('Duração (min)')
+        plt.xticks(rotation=90)
 
         plt.show()
 

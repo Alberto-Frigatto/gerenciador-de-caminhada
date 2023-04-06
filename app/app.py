@@ -3,6 +3,8 @@ import app.messages
 from colorama import Fore
 import os
 import sys
+import pandas as pd
+import platform
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -13,12 +15,12 @@ from walk import (
     Walk,
     WalkingList
 )
-
 from walk.exceptions import WalkError
 
 
 class App:
     def __init__(self) -> None:
+        pd.set_option('display.max_rows', 1000)
         self._create_walking_list_file_if_not_exists()
         self._walking_list = WalkingList()
         self.OPTIONS = [
@@ -45,6 +47,10 @@ class App:
     def end(self) -> None:
         os.system('cls')
         app.messages.end()
+
+    @staticmethod
+    def clear_screen() -> None:
+        os.system('cls' if platform.system() == 'Windows' else 'clear')
 
     def options_menu(self) -> None:
         menu = (
@@ -84,36 +90,37 @@ class App:
                 option()
 
     def view_walks(self) -> None:
-        print(
-            f'{self._walking_list.walks}\n'
-        ) if len(self._walking_list) \
-            else app.messages.no_walks()
+        if len(self._walking_list):
+            self._walking_list.show_walks()
+        else:
+            app.messages.no_walks()
 
     def create_walk(self) -> None:
-        while True:
-            date = input('Informe a data da caminhada (dd/mm/aaaa): ')
-            distance = input('Informe a distância percorrida (Km): ')
-            duration = input('Informe a duração da caminhada (min): ')
+        if self._confirm_walk_creation():
+            while True:
+                date = input('Informe a data da caminhada (dd/mm/aaaa): ')
+                distance = input('Informe a distância percorrida (Km): ')
+                duration = input('Informe a duração da caminhada (min): ')
 
-            try:
-                walk = Walk(date, distance, duration)
-            except WalkError as walk_error:
-                os.system('cls')
-                print(walk_error)
-            else:
-                if self._confirm_walk_creation():
-                    self._walking_list.add_walk(walk)
-                    self._walking_list.save()
-                    app.messages.walk_created()
+                try:
+                    walk = Walk(date, distance, duration)
+                except WalkError as walk_error:
+                    os.system('cls')
+                    print(walk_error)
                 else:
-                    print()
+                    if self._confirm_walk_creation():
+                        self._walking_list.add_walk(walk)
+                        self._walking_list.save()
+                        app.messages.walk_created()
+                    else:
+                        print()
 
-                break
+                    break
 
     def _confirm_walk_creation(self) -> bool:
         while True:
             user_input = input(
-                f'Deseja criar a caminhada? {Fore.YELLOW}(s/n){Fore.RESET}: '
+                f'Deseja prosseguir com a criação? {Fore.YELLOW}(s/n){Fore.RESET}: '
             ).lower()
 
             if user_input not in ['s', 'n']:
@@ -124,17 +131,33 @@ class App:
 
     def delete_walk(self) -> None:
         if len(self._walking_list):
-            self.view_walks()
-            walk_to_be_deleted = self.get_walk_to_be_deleted()
-
             if self._confirm_delete_walk():
-                self._walking_list.delete_walk(walk_to_be_deleted)
-                self._walking_list.save()
-                app.messages.walk_deleted()
+                self._view_walks_with_index()
+                walk_to_be_deleted = self._get_walk_to_be_deleted()
+
+                if self._confirm_delete_walk():
+                    self._walking_list.delete_walk(walk_to_be_deleted)
+                    self._walking_list.save()
+                    app.messages.walk_deleted()
         else:
             app.messages.no_walks()
 
-    def get_walk_to_be_deleted(self) -> int:
+    def _confirm_delete_walk(self) -> None:
+        while True:
+            user_input = input(
+                f'Deseja prosseguir com a exclusão? {Fore.YELLOW}(s/n){Fore.RESET}: '
+            ).lower()
+
+            if user_input not in ['s', 'n']:
+                app.messages.invalid_option()
+                continue
+
+            return True if user_input == 's' else False
+
+    def _view_walks_with_index(self) -> None:
+        print(f'\n{self._walking_list.show_walks_with_index()}\n')
+
+    def _get_walk_to_be_deleted(self) -> int:
         while True:
             try:
                 user_input = input(
@@ -148,18 +171,6 @@ class App:
                 app.messages.non_existent_walk(user_input)
             else:
                 return walk_index
-
-    def _confirm_delete_walk(self) -> None:
-        while True:
-            user_input = input(
-                f'Deseja deletar a caminhada? {Fore.YELLOW}(s/n){Fore.RESET}: '
-            ).lower()
-
-            if user_input not in ['s', 'n']:
-                app.messages.invalid_option()
-                continue
-
-            return True if user_input == 's' else False
 
     def mean_walking_time(self) -> None:
         print(
