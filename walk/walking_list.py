@@ -151,7 +151,8 @@ class WalkingList:
         plt.show()
 
     def walking_time_plot(self) -> None:
-        plt.plot(
+        _, ax = plt.subplots()
+        ax.plot(
             self._df_walking_list[WalkingListColumns.DATE],
             self._df_walking_list[WalkingListColumns.DURATION],
             marker='o',
@@ -161,6 +162,7 @@ class WalkingList:
         plt.grid(True, linestyle=':', color='gray')
         plt.xlabel('Data')
         plt.ylabel('Duração (min)')
+        plt.xticks(rotation=90)
 
         plt.show()
 
