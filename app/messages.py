@@ -44,6 +44,7 @@ def non_existent_walk(walk_index: str) -> None:
 
     print(message)
 
+
 def walk_deleted() -> None:
     message = f'{Fore.GREEN}Caminhada excluída{Fore.RESET}\n'
 
