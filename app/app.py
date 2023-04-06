@@ -4,6 +4,7 @@ from colorama import Fore
 import os
 import sys
 import pandas as pd
+import platform
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -46,6 +47,10 @@ class App:
     def end(self) -> None:
         os.system('cls')
         app.messages.end()
+
+    @staticmethod
+    def clear_screen() -> None:
+        os.system('cls' if platform.system() == 'Windows' else 'clear')
 
     def options_menu(self) -> None:
         menu = (
