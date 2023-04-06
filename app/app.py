@@ -96,30 +96,31 @@ class App:
             app.messages.no_walks()
 
     def create_walk(self) -> None:
-        while True:
-            date = input('Informe a data da caminhada (dd/mm/aaaa): ')
-            distance = input('Informe a distância percorrida (Km): ')
-            duration = input('Informe a duração da caminhada (min): ')
+        if self._confirm_walk_creation():
+            while True:
+                date = input('Informe a data da caminhada (dd/mm/aaaa): ')
+                distance = input('Informe a distância percorrida (Km): ')
+                duration = input('Informe a duração da caminhada (min): ')
 
-            try:
-                walk = Walk(date, distance, duration)
-            except WalkError as walk_error:
-                os.system('cls')
-                print(walk_error)
-            else:
-                if self._confirm_walk_creation():
-                    self._walking_list.add_walk(walk)
-                    self._walking_list.save()
-                    app.messages.walk_created()
+                try:
+                    walk = Walk(date, distance, duration)
+                except WalkError as walk_error:
+                    os.system('cls')
+                    print(walk_error)
                 else:
-                    print()
+                    if self._confirm_walk_creation():
+                        self._walking_list.add_walk(walk)
+                        self._walking_list.save()
+                        app.messages.walk_created()
+                    else:
+                        print()
 
-                break
+                    break
 
     def _confirm_walk_creation(self) -> bool:
         while True:
             user_input = input(
-                f'Deseja criar a caminhada? {Fore.YELLOW}(s/n){Fore.RESET}: '
+                f'Deseja prosseguir com a criação? {Fore.YELLOW}(s/n){Fore.RESET}: '
             ).lower()
 
             if user_input not in ['s', 'n']:
