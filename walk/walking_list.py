@@ -35,6 +35,31 @@ class WalkingList:
     def __len__(self) -> int:
         return len(self._df_walking_list)
 
+    def show_walks(self) -> None:
+        _, ax = plt.subplots()
+
+        table_width = 0.8
+        table_height = 0.8
+        table_x = 0.1
+        table_y = 0.1
+
+        table = ax.table(
+            cellText=self._df_walking_list.values,
+            colLabels=[
+                WalkingListColumns.DATE,
+                f'{WalkingListColumns.DISTANCE} (Km)',
+                f'{WalkingListColumns.DURATION} (min)',
+            ],
+            loc='center',
+            cellLoc='center',
+            bbox=[table_x, table_y, table_width, table_height]
+        )
+        table.auto_set_column_width(
+            list(range(len(self._df_walking_list.columns)))
+        )
+        ax.axis('off')
+        plt.show()
+
     def add_walk(self, walk: Walk) -> None:
         self._df_walking_list.loc[len(self._df_walking_list)] = {
             WalkingListColumns.DATE: walk.date,
