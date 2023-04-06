@@ -60,6 +60,9 @@ class WalkingList:
         ax.axis('off')
         plt.show()
 
+    def show_walks_with_index(self) -> None:
+        return self._df_walking_list
+
     def add_walk(self, walk: Walk) -> None:
         self._df_walking_list.loc[len(self._df_walking_list)] = {
             WalkingListColumns.DATE: walk.date,
