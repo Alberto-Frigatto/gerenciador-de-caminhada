@@ -3,6 +3,7 @@ import app.messages
 from colorama import Fore
 import os
 import sys
+import pandas as pd
 
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -13,12 +14,12 @@ from walk import (
     Walk,
     WalkingList
 )
-
 from walk.exceptions import WalkError
 
 
 class App:
     def __init__(self) -> None:
+        pd.set_option('display.max_rows', 1000)
         self._create_walking_list_file_if_not_exists()
         self._walking_list = WalkingList()
         self.OPTIONS = [
@@ -84,10 +85,10 @@ class App:
                 option()
 
     def view_walks(self) -> None:
-        print(
-            f'{self._walking_list.walks}\n'
-        ) if len(self._walking_list) \
-            else app.messages.no_walks()
+        if len(self._walking_list):
+            self._walking_list.show_walks()
+        else:
+            app.messages.no_walks()
 
     def create_walk(self) -> None:
         while True:
@@ -124,17 +125,33 @@ class App:
 
     def delete_walk(self) -> None:
         if len(self._walking_list):
-            self.view_walks()
-            walk_to_be_deleted = self.get_walk_to_be_deleted()
-
             if self._confirm_delete_walk():
-                self._walking_list.delete_walk(walk_to_be_deleted)
-                self._walking_list.save()
-                app.messages.walk_deleted()
+                self._view_walks_with_index()
+                walk_to_be_deleted = self._get_walk_to_be_deleted()
+
+                if self._confirm_delete_walk():
+                    self._walking_list.delete_walk(walk_to_be_deleted)
+                    self._walking_list.save()
+                    app.messages.walk_deleted()
         else:
             app.messages.no_walks()
 
-    def get_walk_to_be_deleted(self) -> int:
+    def _confirm_delete_walk(self) -> None:
+        while True:
+            user_input = input(
+                f'Deseja prosseguir com a exclusão? {Fore.YELLOW}(s/n){Fore.RESET}: '
+            ).lower()
+
+            if user_input not in ['s', 'n']:
+                app.messages.invalid_option()
+                continue
+
+            return True if user_input == 's' else False
+
+    def _view_walks_with_index(self) -> None:
+        print(f'\n{self._walking_list.show_walks_with_index()}\n')
+
+    def _get_walk_to_be_deleted(self) -> int:
         while True:
             try:
                 user_input = input(
@@ -148,18 +165,6 @@ class App:
                 app.messages.non_existent_walk(user_input)
             else:
                 return walk_index
-
-    def _confirm_delete_walk(self) -> None:
-        while True:
-            user_input = input(
-                f'Deseja deletar a caminhada? {Fore.YELLOW}(s/n){Fore.RESET}: '
-            ).lower()
-
-            if user_input not in ['s', 'n']:
-                app.messages.invalid_option()
-                continue
-
-            return True if user_input == 's' else False
 
     def mean_walking_time(self) -> None:
         print(
