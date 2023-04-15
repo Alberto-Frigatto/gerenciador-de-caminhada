@@ -1,5 +1,4 @@
 import os
-from enum import StrEnum
 
 
 WALKING_LIST_DIRECTORY = 'data'
@@ -10,7 +9,7 @@ WALKING_LIST_FILE_PATH = os.path.join(
 CSV_SEPARATOR = ';'
 
 
-class WalkingListColumns(StrEnum):
+class WalkingListColumns:
     DATE = 'Data'
     DISTANCE = 'Distância'
     DURATION = 'Duração'

@@ -171,5 +171,5 @@ class WalkingList:
         return self._df_walking_list
 
     @property
-    def index(self) -> list[int]:
+    def index(self) -> 'list[int]':
         return self._df_walking_list.index
