@@ -18,20 +18,29 @@ Sistema para gerenciar o seu exercício, oferecendo informações e estatística
 
 ## iniciando
 
-Instale o Python na versão 3.11.2. [Clique aqui para baixar](https://www.python.org/downloads/)
-
 Baixe o projeto via GitHub
 
 ```
 git clone https://github.com/Alberto-Frigatto/gerenciador-de-caminhada.git
 ```
 
-Estando na pasta do projeto, ative o ambiente virtual e execute o projeto
+Estando na pasta do projeto, crie um ambiente virtual, ative-o e execute o projeto
+
+**pip**
 
 ```
 python -m venv .venv
 .venv/scripts/activate
 pip install -r requirements.txt
+python main.py
+```
+
+**conda**
+
+```
+conda config --add channels conda-forge
+conda create --prefix ./.venv --file requirements.txt python --no-pin
+conda activate ./.venv
 python main.py
 ```
 
