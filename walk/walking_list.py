@@ -38,10 +38,10 @@ class WalkingList:
     def show_walks(self) -> None:
         _, ax = plt.subplots()
 
-        table_width = 0.8
-        table_height = 0.8
-        table_x = 0.1
-        table_y = 0.1
+        table_width = .8
+        table_height = 1.05
+        table_x = .1
+        table_y = .03
 
         table = ax.table(
             cellText=self._df_walking_list.values,
